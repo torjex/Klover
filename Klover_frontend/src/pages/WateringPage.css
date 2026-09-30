@@ -1,0 +1,287 @@
+.watering {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.watering__panel {
+  padding: 22px;
+  border-radius: var(--radius-lg);
+}
+
+/* Zone header: the zone's photo beside its name. */
+.watering__zone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.watering__photo {
+  width: 96px;
+  height: 62px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--ivory-sunk);
+  flex: none;
+}
+
+.watering__zone-name {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.watering__eyebrow {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.watering__divider {
+  height: 1px;
+  background: var(--border-soft);
+  margin: 18px 0;
+}
+
+.watering__estimate-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.watering__info {
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--ivory-sunk);
+  color: var(--muted);
+  cursor: help;
+}
+
+.watering__estimate {
+  margin-top: 6px;
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+
+.watering__estimate-sub {
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.watering__control {
+  position: relative;
+  display: block;
+}
+
+.watering__control-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--green-600);
+  pointer-events: none;
+}
+
+.watering__select {
+  height: 50px;
+  padding-left: 46px;
+  padding-right: 40px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  background-position: right 15px center;
+}
+
+.watering__timer {
+  display: grid;
+  place-items: center;
+  margin-top: 18px;
+  padding: 22px 12px;
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, #eef7ef 0%, #f6faf4 100%);
+  border: 1px solid var(--border-soft);
+}
+
+/* Countdown ring: it empties as the run proceeds, matching the clock. */
+.wtimer {
+  position: relative;
+  width: 190px;
+  height: 190px;
+}
+
+.wtimer__ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.wtimer__track,
+.wtimer__fill {
+  fill: none;
+  stroke-width: 9;
+}
+
+.wtimer__track {
+  stroke: #dfe5e0;
+}
+
+.wtimer__fill {
+  stroke: #21a453;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.wtimer__inner {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.wtimer__drop {
+  color: #21a453;
+  margin-bottom: 4px;
+}
+
+.watering__clock {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.watering__clock-label {
+  margin-top: 5px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.watering__facts {
+  margin-top: 18px;
+  display: grid;
+  gap: 0;
+}
+
+.watering__fact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 14px;
+}
+
+.watering__fact:last-child {
+  border-bottom: 0;
+}
+
+.watering__fact dt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink-2);
+}
+
+.watering__fact dt svg {
+  color: var(--muted-2);
+}
+
+.watering__fact dd {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.watering__duration-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.watering__custom {
+  position: relative;
+  width: 96px;
+}
+
+.watering__custom-input {
+  height: 46px;
+  padding-right: 38px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  appearance: textfield;
+}
+
+/* The native spinner only shows on hover and is tiny, so it is replaced. */
+.watering__custom-input::-webkit-outer-spin-button,
+.watering__custom-input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.watering__stepper {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  gap: 2px;
+}
+
+.watering__stepper button {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 18px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.watering__stepper button:hover {
+  background: var(--ivory-sunk);
+  color: var(--ink);
+}
+
+/* One chevron glyph serves both arrows; the first is flipped. */
+.watering__stepper button:first-child svg {
+  transform: rotate(180deg);
+}
+
+.watering__unit {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* The primary and stop actions anchor each card. */
+.watering__action.btn {
+  height: 56px;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.watering__action.btn--danger {
+  background: #fff6f5;
+}
+
+.watering__action.btn--danger:hover:not(:disabled) {
+  background: var(--danger-soft);
+}

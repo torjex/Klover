@@ -1,0 +1,316 @@
+/* ---------------------------------------------------------------
+   Overview stat cards
+   A self-contained palette: brighter emerald + blue on white, sitting
+   on a soft mint wash, per the Overview design.
+   --------------------------------------------------------------- */
+.ovc-band {
+  position: relative;
+  margin: 0 0 4px;
+  padding: 4px 0 8px;
+}
+
+.ovc-band::before {
+  content: "";
+  position: absolute;
+  inset: -18px -28px -10px;
+  border-radius: 28px;
+  background:
+    radial-gradient(58% 120% at 0% 50%, rgba(102, 202, 137, 0.16), transparent 70%),
+    radial-gradient(58% 120% at 100% 50%, rgba(102, 202, 137, 0.16), transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #fbfefc 100%);
+  pointer-events: none;
+}
+
+.ovc-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 1180px) {
+  .ovc-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .ovc-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Card ---------------------------------------------------------- */
+.ovc {
+  --ovc-ink: #16233a;
+  --ovc-title: #26374e;
+  --ovc-muted: #7c8ba1;
+  --ovc-faint: #adbaca;
+  --ovc-green: #22c55e;
+  --ovc-green-deep: #16a34a;
+  --ovc-green-soft: #e3f7ea;
+  --ovc-blue: #2f86ea;
+  --ovc-blue-mid: #7fb4f0;
+  --ovc-blue-light: #c3dcf9;
+  --ovc-blue-soft: #ddecfd;
+  --ovc-track: #e7ecf2;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 190px;
+  padding: 18px 18px 16px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 10px 28px -14px rgba(15, 23, 42, 0.16);
+  color: var(--ovc-ink);
+  text-decoration: none;
+  transition:
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+a.ovc:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.05),
+    0 18px 38px -18px rgba(15, 23, 42, 0.24);
+}
+
+a.ovc:hover .ovc__chevron {
+  color: var(--ovc-muted);
+}
+
+.ovc__main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.ovc__badge {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--ovc-green-soft);
+  color: var(--ovc-green-deep);
+}
+
+.ovc__badge--blue {
+  background: var(--ovc-blue-soft);
+  color: var(--ovc-blue);
+}
+
+.ovc__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ovc__title-row {
+  display: flex;
+  align-items: center;
+  min-height: 20px;
+  padding-right: 22px;
+}
+
+.ovc__title {
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ovc-title);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ovc__chevron {
+  position: absolute;
+  top: 30px;
+  right: 16px;
+  z-index: 2;
+  color: #cdd7e2;
+  transition: color 0.18s ease;
+}
+
+.ovc__value {
+  margin-top: 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--ovc-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.ovc__value--stack {
+  display: block;
+  font-size: 26px;
+  line-height: 1.2;
+}
+
+.ovc__total {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ovc-faint);
+}
+
+.ovc__sub {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--ovc-muted);
+}
+
+.ovc__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ovc-green);
+  flex: none;
+}
+
+.ovc__dot--idle {
+  background: var(--ovc-faint);
+}
+
+.ovc__delta {
+  font-weight: 600;
+}
+
+.ovc__delta--down {
+  color: var(--ovc-green-deep);
+}
+
+.ovc__delta--up {
+  color: #d08214;
+}
+
+.ovc__foot {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+/* Card 1 — leaf tally ------------------------------------------- */
+.ovc__leaves {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ovc__leaf {
+  color: #43cd72;
+}
+
+.ovc__leaf--off {
+  color: #d6dee6;
+}
+
+/* Card 2 — sparkline -------------------------------------------- */
+.ovc__spark-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.ovc__spark {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 42px;
+}
+
+.ovc__spark span {
+  width: 6px;
+  border-radius: 3px;
+  background: var(--ovc-blue-light);
+}
+
+.ovc__spark span[data-tone="mid"] {
+  background: var(--ovc-blue-mid);
+}
+
+.ovc__spark span[data-tone="strong"] {
+  background: var(--ovc-blue);
+}
+
+.ovc__spark-label {
+  font-size: 13px;
+  color: var(--ovc-muted);
+  white-space: nowrap;
+  padding-bottom: 2px;
+}
+
+/* Card 3 — probability meter ------------------------------------ */
+.ovc__meter {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--ovc-track);
+  overflow: hidden;
+}
+
+.ovc__meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4ec97f, #22c55e);
+  transition: width 0.4s ease;
+}
+
+.ovc__meter-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--ovc-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Decorative art ------------------------------------------------ */
+.ovc__art {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.ovc__art--sun {
+  right: -14px;
+  bottom: -12px;
+  opacity: 0.85;
+}
+
+/* Skeleton ------------------------------------------------------ */
+.ovc--loading {
+  gap: 14px;
+}
+
+@media (max-width: 560px) {
+  .ovc-band::before {
+    inset: -14px -18px -10px;
+  }
+  .ovc {
+    min-height: 178px;
+  }
+  .ovc__value {
+    font-size: 30px;
+  }
+}

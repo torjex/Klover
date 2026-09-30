@@ -1,0 +1,669 @@
+/* ---------------------------------------------------------------
+   Zones - a single panel holding the header and the zone table
+   --------------------------------------------------------------- */
+.zpanel {
+  --zp-ink: #16233a;
+  --zp-muted: #6b7a8c;
+  --zp-faint: #9aa7b6;
+  --zp-line: #edf0f3;
+  --zp-green: #1f7a44;
+  --zp-green-deep: #14532d;
+  --zp-green-soft: #e8f5ec;
+
+  padding: 26px 26px 24px;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 14px 40px -22px rgba(15, 23, 42, 0.22);
+}
+
+/* Header --------------------------------------------------------- */
+.zpanel__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.zpanel__mark {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: var(--zp-green-soft);
+  color: var(--zp-green);
+  flex: none;
+}
+
+.zpanel__heading {
+  flex: 1;
+  min-width: 220px;
+}
+
+.zpanel__title {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--zp-ink);
+}
+
+.zpanel__subtitle {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--zp-muted);
+}
+
+.zpanel__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.zbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  height: 46px;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.06s ease;
+}
+
+.zbtn:active {
+  transform: translateY(0.5px);
+}
+
+.zbtn--primary {
+  background: var(--forest-900);
+  color: #ffffff;
+  box-shadow: 0 8px 20px -12px rgba(14, 50, 34, 0.9);
+}
+
+.zbtn--primary:hover {
+  background: var(--forest-800);
+  text-decoration: none;
+}
+
+.zbtn--soft {
+  background: var(--zp-green-soft);
+  color: var(--zp-green-deep);
+}
+
+.zbtn--soft:hover {
+  background: #ddeee3;
+  text-decoration: none;
+}
+
+/* Table ---------------------------------------------------------- */
+.ztable-wrap {
+  border-radius: 16px;
+  background: #fbfcfc;
+  overflow: hidden;
+}
+
+.ztable-scroll {
+  overflow-x: auto;
+}
+
+.ztable {
+  width: 100%;
+  min-width: 780px;
+  border-collapse: collapse;
+}
+
+.ztable thead th {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--zp-muted);
+  background: #f4f7f5;
+  border-bottom: 1px solid var(--zp-line);
+  white-space: nowrap;
+}
+
+.ztable thead th:last-child {
+  text-align: right;
+}
+
+.ztable tbody tr {
+  background: #ffffff;
+  border-bottom: 1px solid var(--zp-line);
+  transition: background-color 0.14s ease;
+}
+
+.ztable tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.ztable tbody tr:hover {
+  background: #fafcfb;
+}
+
+.ztable tbody td {
+  padding: 14px 20px;
+  vertical-align: middle;
+}
+
+.ztable tbody td:last-child {
+  text-align: right;
+}
+
+/* Zone identity cell --------------------------------------------- */
+.zid {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.zid__thumb {
+  width: 78px;
+  height: 58px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex: none;
+  background: var(--zp-green-soft);
+}
+
+.zid__name {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  color: var(--zp-ink);
+}
+
+.zid__desc {
+  margin-top: 3px;
+  font-size: 14px;
+  color: var(--zp-muted);
+}
+
+/* Status --------------------------------------------------------- */
+.zstatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 16px 5px 5px;
+  border-radius: 999px;
+  background: #eef2f0;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.16s ease;
+}
+
+.zstatus[data-on="true"] {
+  background: var(--zp-green-soft);
+}
+
+.zstatus:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.zstatus__track {
+  position: relative;
+  width: 46px;
+  height: 26px;
+  border-radius: 999px;
+  background: #a8b3ad;
+  flex: none;
+  transition: background-color 0.18s ease;
+}
+
+.zstatus[data-on="true"] .zstatus__track {
+  background: var(--zp-green);
+}
+
+.zstatus__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+  transition: transform 0.18s ease;
+}
+
+.zstatus[data-on="true"] .zstatus__thumb {
+  transform: translateX(20px);
+}
+
+.zstatus__label {
+  font-size: 15px;
+  font-weight: 600;
+  color: #5d6b63;
+}
+
+.zstatus[data-on="true"] .zstatus__label {
+  color: var(--zp-green);
+}
+
+/* Metric cells ---------------------------------------------------- */
+.zcell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.zcell__icon {
+  color: var(--zp-green);
+  flex: none;
+}
+
+.zcell__value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--zp-ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.zcell__sub {
+  margin-top: 2px;
+  font-size: 13.5px;
+  color: var(--zp-muted);
+  white-space: nowrap;
+}
+
+.zcell__muted {
+  font-size: 15px;
+  color: var(--zp-faint);
+}
+
+/* Row action button ---------------------------------------------- */
+.zactions {
+  display: inline-flex;
+}
+
+.zactions .icon-btn {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #e7ebe9;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #46525c;
+}
+
+.zactions .icon-btn:hover {
+  background: #f4f7f5;
+}
+
+/* Empty ----------------------------------------------------------- */
+.zpanel__empty {
+  padding: 8px 0 4px;
+}
+
+@media (max-width: 720px) {
+  .zpanel {
+    padding: 20px 16px 18px;
+    border-radius: 18px;
+  }
+  .zpanel__title {
+    font-size: 28px;
+  }
+  .zpanel__actions {
+    width: 100%;
+  }
+  .zbtn {
+    flex: 1;
+    padding: 0 14px;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Add / edit zone dialog - a form beside a live preview of the zone
+   being described, so the numbers being typed have a face.
+   --------------------------------------------------------------- */
+.zdlg {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.zdlg__form {
+  min-width: 0;
+}
+
+.zdlg .field + .field,
+.zdlg__advanced {
+  margin-top: 20px;
+}
+
+.zdlg__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.zdlg__req {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+/* Inputs carry a leading glyph and, where useful, their own stepper. */
+.zdlg__control {
+  position: relative;
+  display: block;
+}
+
+.zdlg__control-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--green-600);
+  pointer-events: none;
+}
+
+.zdlg__input {
+  height: 52px;
+  border-radius: var(--radius);
+  font-size: 15px;
+}
+
+.zdlg__input--iconed {
+  padding-left: 46px;
+}
+
+select.zdlg__input--iconed {
+  padding-right: 40px;
+  background-position: right 15px center;
+}
+
+.zdlg__input--stepped {
+  padding-right: 46px;
+}
+
+/* The native spinner is tiny and only appears on hover, so it is replaced. */
+.zdlg__input--stepped::-webkit-outer-spin-button,
+.zdlg__input--stepped::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.zdlg__input--stepped {
+  appearance: textfield;
+}
+
+.zdlg__stepper {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  gap: 2px;
+}
+
+.zdlg__stepper button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 21px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.zdlg__stepper button:hover {
+  background: var(--ivory-sunk);
+  color: var(--ink);
+}
+
+/* One chevron glyph serves both arrows; the first is flipped. */
+.zdlg__stepper button:first-child svg {
+  transform: rotate(180deg);
+}
+
+/* Advanced ------------------------------------------------------- */
+.zdlg__advanced {
+  padding-top: 18px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.zdlg__advanced-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.zdlg__advanced-chevron {
+  color: var(--muted);
+}
+
+.zdlg__advanced-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.zdlg__advanced-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.zdlg__advanced-body {
+  margin-top: 16px;
+}
+
+.zdlg__swatches {
+  display: flex;
+  gap: 9px;
+}
+
+.zdlg__swatch {
+  width: 28px;
+  height: 28px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(16, 40, 27, 0.12);
+  cursor: pointer;
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.zdlg__swatch:hover {
+  transform: scale(1.08);
+}
+
+.zdlg__swatch[aria-checked="true"] {
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--ink);
+}
+
+/* Preview -------------------------------------------------------- */
+.zdlg__preview {
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--ivory);
+  border: 1px solid var(--border-soft);
+}
+
+.zdlg__preview-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.zdlg__photo {
+  margin-top: 14px;
+}
+
+.zdlg__preview-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--ivory-sunk);
+}
+
+.zdlg__photo-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.zdlg__photo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.zdlg__photo-btn:hover {
+  background: var(--ivory-sunk);
+}
+
+.zdlg__photo-btn--quiet {
+  flex: none;
+  color: var(--muted);
+}
+
+.zdlg__photo-btn--quiet:hover {
+  border-color: #e8c7c2;
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.zdlg__photo-hint {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.zdlg__preview-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.zdlg__preview-flow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 7px 13px;
+  border-radius: var(--radius-sm);
+  background: var(--info-soft);
+  color: var(--forest-800);
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.zdlg__preview-flow svg {
+  color: var(--green-600);
+}
+
+.zdlg__preview-area {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 12px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.zdlg__preview-area svg {
+  margin-top: 1px;
+  color: var(--muted-2);
+}
+
+.zdlg__preview-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.zdlg__preview-note svg {
+  margin-top: 1px;
+  color: var(--muted);
+}
+
+/* Footer --------------------------------------------------------- */
+.zdlg__learn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.zdlg__learn:hover {
+  color: var(--green-600);
+  text-decoration: none;
+}
+
+@media (max-width: 760px) {
+  .zdlg {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+  /* Stacked, the form comes first and the preview follows it. */
+  .zdlg__preview {
+    order: 2;
+  }
+}
