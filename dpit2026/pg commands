@@ -1,0 +1,23 @@
+Install dependency
+sudo dnf install postgresql postgresql-server postgresql-contrib
+sudo postgresql-setup --initdb
+sudo systemctl enable postgresql --now
+
+sudo -u postgres psql
+
+Inside psql:
+\du                                        -- list roles/users
+\l                                         -- list databases
+CREATE USER test WITH PASSWORD 'test123';  -- create the app's DB role
+ALTER USER test WITH PASSWORD 'test123';   -- reset password if needed
+CREATE DATABASE sprinkler OWNER test;      -- create the app's database
+GRANT ALL PRIVILEGES ON DATABASE sprinkler TO test; -- if ownership wasn't set at creation
+\q                                         -- exit
+
+test apps' connection
+psql -U test -d sprinkler -h localhost
+
+cfg file edit pt auth
+sudo nano /var/lib/pgsql/data/pg_hba.conf
+  # host lines de la "ident" la "md5"; local line sta "peer"
+sudo systemctl restart postgresql

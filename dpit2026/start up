@@ -1,0 +1,29 @@
+Startup:
+
+1. Hotstop telefon
+
+2. Vezi ip hotspot:
+
+hostname -I
+
+3. Update la ip daca este diferit
+
+Arduino sketch :
+  const char* MQTT_BROKER = "<new-ip-here>";
+Frontend (once built) — update its API base URL to http://<new-ip-here>:3000/api
+
+4. Verif postgresql si mosquitto running:
+
+sudo systemctl status postgresql mosquitto
+
+5. Start bacnend
+
+cd E:\Klover_backend
+npm run dev
+
+6. power esp32, vezi linia de connected
+
+7. Check:
+
+curl -X POST http://<ip>:3000/api/login -H "Content-Type: application/json" -d '{"password":"test123"}'
+curl -X POST http://<ip>:3000/api/water/now -H "Content-Type: application/json" -H "x-api-key: <key-from-step-7>" -d '{"zone":"frontlawn","durationSeconds":10}'
